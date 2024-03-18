@@ -1,0 +1,14 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "a chat app",
+  "main": "index.ts",
+  "scripts": {
+    "server": "cd server && npm install && npm start",
+    "client": "cd client && npm install && npm run build",
+    "build": "npm run client && npm run server"
+  },
+  "keywords": [],
+  "author": "Rafet Basturk <rafetbasturk@yahoo.com> (https://github.com/rafetbasturk)",
+  "license": "ISC"
+}
