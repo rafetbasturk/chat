@@ -4,13 +4,13 @@ import { Server, Socket } from "socket.io";
 import { ClientToServerEvents, ServerToClientEvents } from "../../types";
 
 export const socketIo = (server: any, mode: string | undefined) => {
-  return new Server<
-  ClientToServerEvents,
-  ServerToClientEvents
->(server, {
+  return new Server<ClientToServerEvents, ServerToClientEvents>(server, {
     pingTimeout: 30000,
     cors: {
-      origin: mode === "production" ? undefined : ["http://localhost:5173"],
+      origin:
+        mode === "production"
+          ? ["https://chat-1ykr.onrender.com/"]
+          : ["http://localhost:5173"],
       credentials: true,
     },
   });

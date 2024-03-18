@@ -6,8 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000/",
-        // target: 'https://rafet-odinbook.onrender.com/',
+        // target: "http://localhost:5000/",
+        target: "https://chat-1ykr.onrender.com/",
         changeOrigin: true,
       },
     },

@@ -4,7 +4,7 @@ import { ServerToClientEvents, ClientToServerEvents } from "../../../types";
 export const socketWithQuery = (
   userId: string
 ): Socket<ServerToClientEvents, ClientToServerEvents> => {
-  return io("ws://localhost:5000", {
+  return io("https://chat-1ykr.onrender.com/", {
     query: {
       userId,
     },
