@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "node index.ts",
     "build": "tsc",
-    "dev": "nodemon index.ts"
+    "dev": "nodemon src/server.ts"
   },
   "keywords": [],
   "author": "Rafet Basturk <rafetbasturk@yahoo.com> (https://github.com/rafetbasturk)",

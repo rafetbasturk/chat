@@ -7,7 +7,7 @@
     "server": "cd server && npm install",
     "client": "cd client && npm install && npm run build",
     "build": "npm run client && npm run server",
-    "start": "ts-node server/index.ts"
+    "start": "node server/index.ts"
   },
   "keywords": [],
   "author": "Rafet Basturk <rafetbasturk@yahoo.com> (https://github.com/rafetbasturk)",
