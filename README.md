@@ -16,4 +16,4 @@ This is an assignment in The Odin Project.
 
 ## Live
 
-- [Odinbook](https://rafet-chat.onrender.com/)
+- [Odin Chat App](https://chat-1ykr.onrender.com/)
