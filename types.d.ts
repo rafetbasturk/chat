@@ -1,12 +1,13 @@
 export interface ServerToClientEvents {
   getOnlineUsers: (data: string[]) => void;
   newServerMessage: () => void;
-  display: (data: string) => void;
+  displayTyping: (data: string) => void;
+  newUser: (name: string) => void;
 }
 
 export interface ClientToServerEvents {
   newClientMessage: () => void;
-  typing: ({ id, value }: {id: string, value: string}) => void;
+  typing: ({ id, value }: { id: string; value: string }) => void;
 }
 
 export interface ErrorResponse {

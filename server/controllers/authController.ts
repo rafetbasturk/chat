@@ -3,6 +3,7 @@ import { BadRequestError } from "../errors";
 import User from "../models/userModel";
 import { StatusCodes } from "http-status-codes";
 import { attachCookie } from "../utils/attachCookie";
+import { io } from "..";
 
 export async function register(req: Request, res: Response) {
   const { name, email, password, confirm } = req.body;
@@ -19,6 +20,8 @@ export async function register(req: Request, res: Response) {
 
   user.set("password", undefined);
 
+  io.emit("newUser", user.name);
+
   res.status(StatusCodes.CREATED).json({
     user,
   });
@@ -32,6 +35,8 @@ export async function login(req: Request, res: Response) {
   const user = await User.login(email, password);
   const token = user.createJWT();
   attachCookie(res, token);
+
+  io.emit("newUser", user.name);
 
   res.status(StatusCodes.OK).json({
     user,

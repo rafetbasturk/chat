@@ -8,9 +8,9 @@ export const socketIo = (server: any, mode: string | undefined) => {
     pingTimeout: 30000,
     cors: {
       origin:
-        mode === "production"
-          ? ["https://chat-1ykr.onrender.com/"]
-          : ["http://localhost:5173"],
+        mode === "development"
+          ? ["http://localhost:5173"]
+          : ["https://chat-1ykr.onrender.com/"],
       credentials: true,
     },
   });
@@ -37,7 +37,7 @@ export const connection = (
         io.emit("getOnlineUsers", Object.keys(socketUsersMap));
 
         socket.on("typing", (data) => {
-          io.to(socketUsersMap[data.id]).emit("display", data.value);
+          io.to(socketUsersMap[data.id]).emit("displayTyping", data.value);
         });
       }
 
