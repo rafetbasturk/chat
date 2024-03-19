@@ -13,6 +13,7 @@ import {
 } from "../../../types";
 import { Socket } from "socket.io-client";
 import { socketWithQuery } from "../configs/socket";
+import toast from "react-hot-toast";
 
 interface IContext {
   socket: Socket<ServerToClientEvents, ClientToServerEvents> | null;
@@ -37,9 +38,14 @@ export default function SocketContextProvider({ children }: PropsWithChildren) {
         setOnlineUsers(users);
       });
 
+      socketRef.current.on("newUser", (name) => {
+        toast.success(`${name} is online`);
+      });
+
       return () => {
         socketRef.current?.disconnect();
         socketRef.current?.off("getOnlineUsers");
+        socketRef.current?.off("newUser");
       };
     } else {
       socketRef.current?.disconnect();

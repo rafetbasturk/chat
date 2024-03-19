@@ -24,7 +24,7 @@ export default function ConversationContent() {
       }
     });
 
-    socket?.on("display", (data) => {
+    socket?.on("displayTyping", (data) => {
       setIsTyping(false);
       if (data) {
         setIsTyping(true);
@@ -33,7 +33,7 @@ export default function ConversationContent() {
 
     return () => {
       socket?.off("newServerMessage");
-      socket?.off("display");
+      socket?.off("displayTyping");
     };
   }, [socket, revalidator]);
 
