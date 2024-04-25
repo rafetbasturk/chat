@@ -11,7 +11,7 @@ export const landingAction = async () => {
     toast.success("Logged in successfully as demo user");
     return redirect("/");
   } catch (error) {
-    console.log("LANDING ACTION", error);
+    // console.log("LANDING ACTION", error);
     if (error instanceof AxiosError) {
       toast.error(error.response?.data.msg);
       return redirect("/landing");

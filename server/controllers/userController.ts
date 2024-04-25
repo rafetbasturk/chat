@@ -4,10 +4,11 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError } from "../errors";
 
 interface CustomRequest extends Request {
-  user?: {
+  user: {
     userId: string;
     role: string;
   };
+  image?: File | undefined;
 }
 
 interface IQuery {
@@ -51,5 +52,27 @@ export async function getContacts(req: Request, res: Response) {
 
   res.status(StatusCodes.OK).json({
     contacts,
+  });
+}
+
+export async function uploadImage(req: Request, res: Response) {
+  const request = req as CustomRequest;
+
+  console.log(request.image);
+
+  res.status(StatusCodes.OK).json({ imageUrl: "" });
+}
+
+export async function updateUser(req: Request, res: Response) {
+  const request = req as CustomRequest;
+  const { userId } = request.user;
+
+  const user = await User.findByIdAndUpdate(userId, request.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(StatusCodes.OK).json({
+    user,
   });
 }

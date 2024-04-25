@@ -13,14 +13,8 @@ export default function Navbar() {
       >
         <IoMdContact className="h-8 w-8 m-auto my-2" />
       </NavLink>
-      {/* <NavLink
-        to={"/conversations"}
-        className={"[&.active]:text-blue-400 basis-1/3 hover:bg-gray-600"}
-      >
-        <IoIosChatbubbles className="h-8 w-8 m-auto my-2" />
-      </NavLink> */}
       <NavLink
-        to={`/settings/${currentUser?._id}`}
+        to={`/profile/${currentUser?._id}`}
         className={"[&.active]:text-blue-400 hover:bg-gray-600 grow"}
       >
         <IoIosSettings className="h-8 w-8 m-auto my-2" />

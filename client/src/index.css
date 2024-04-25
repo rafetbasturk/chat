@@ -7,5 +7,5 @@
 }
 
 body {
-  @apply bg-gray-700 max-w-[1440px] m-auto;
+  @apply bg-gray-700 max-w-[1440px] m-auto antialiased;
 }

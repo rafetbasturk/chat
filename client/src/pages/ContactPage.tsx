@@ -5,7 +5,7 @@ import { Contacts } from "../components/contactPage";
 export default function ContactPage() {
   return (
     <>
-      <Sidebar heading="contacts">
+      <Sidebar heading="contacts" showSearch>
         <Contacts />
       </Sidebar>
 

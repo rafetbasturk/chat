@@ -20,7 +20,7 @@ export async function register(req: Request, res: Response) {
 
   user.set("password", undefined);
 
-  io.emit("newUser", user.name);
+  io.emit("userConnected", user.name);
 
   res.status(StatusCodes.CREATED).json({
     user,
@@ -36,7 +36,7 @@ export async function login(req: Request, res: Response) {
   const token = user.createJWT();
   attachCookie(res, token);
 
-  io.emit("newUser", user.name);
+  io.emit("userConnected", user.name);
 
   res.status(StatusCodes.OK).json({
     user,

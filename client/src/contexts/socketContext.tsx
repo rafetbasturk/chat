@@ -38,14 +38,14 @@ export default function SocketContextProvider({ children }: PropsWithChildren) {
         setOnlineUsers(users);
       });
 
-      socketRef.current.on("newUser", (name) => {
-        toast.success(`${name} is online`);
+      socketRef.current.on("userConnected", (name) => {
+        toast(`${name} is online`)
       });
 
       return () => {
         socketRef.current?.disconnect();
         socketRef.current?.off("getOnlineUsers");
-        socketRef.current?.off("newUser");
+        socketRef.current?.off("userConnected");
       };
     } else {
       socketRef.current?.disconnect();

@@ -18,7 +18,7 @@ export const contactsLoader = async () => {
     const data = await getContacts()
     return json(data.contacts, { status: 200 });
   } catch (error) {
-    console.log("CONTACTS LOADER", error);
+    // console.log("CONTACTS LOADER", error);
     if (error instanceof AxiosError) {
       if (error.response?.status === 401) {
         return redirect("/landing");

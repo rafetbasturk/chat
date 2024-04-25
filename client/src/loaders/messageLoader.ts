@@ -57,7 +57,7 @@ export const messageLoader = async ({ params }: LoaderFunctionArgs) => {
 
     return response;
   } catch (error) {
-    console.log("MESSAGE LOADER", error);
+    // console.log("MESSAGE LOADER", error);
     if (error instanceof AxiosError) {
       if (error.response?.status === 401) {
         return redirect("/login");

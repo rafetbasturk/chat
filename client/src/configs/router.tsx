@@ -9,6 +9,7 @@ import {
   SettingsPage,
 } from "../pages";
 import {
+  editAction,
   landingAction,
   loginAction,
   logoutAction,
@@ -22,8 +23,9 @@ import {
   userLoader,
 } from "../loaders";
 import RouteError from "../components/RouteError";
-import SocketContextProvider from "../context/socketContext";
 import { ConversationContent } from "../components/contactPage";
+import { EditProfile, Profile } from "../components/settingsPage";
+import { SocketContextProvider, UploadContextProvider } from "../contexts";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +40,9 @@ export const router = createBrowserRouter([
             path: "/",
             element: (
               <SocketContextProvider>
-                <ContactPage />
+                <UploadContextProvider>
+                  <ContactPage />
+                </UploadContextProvider>
               </SocketContextProvider>
             ),
             loader: contactsLoader,
@@ -56,13 +60,25 @@ export const router = createBrowserRouter([
             ],
           },
           {
-            path: "settings/:id",
-            element: <SettingsPage />,
+            id: "profile",
+            path: "profile/:id",
+            element: (
+              <SocketContextProvider>
+                <UploadContextProvider closeModalAfterSelect>
+                  <SettingsPage />
+                </UploadContextProvider>
+              </SocketContextProvider>
+            ),
             loader: userLoader,
             children: [
               {
                 index: true,
-                element: <div>Settings Page</div>,
+                element: <Profile />,
+              },
+              {
+                action: editAction,
+                path: "edit",
+                element: <EditProfile />,
               },
             ],
           },

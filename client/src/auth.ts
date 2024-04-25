@@ -25,7 +25,7 @@ export const authStatus: AuthState = {
         currentUser: data.currentUser,
       };
     } catch (error) {
-      console.log("authStatus-getCurrentUser: ", error);
+      // console.log("authStatus-getCurrentUser: ", error);
 
       return {
         isAuthenticated: false,

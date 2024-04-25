@@ -2,17 +2,7 @@ import { Schema, Model, model, HydratedDocument, Types } from "mongoose";
 import { UnAuthenticatedError } from "../errors";
 import bcrypt from "bcrypt";
 import jwt, { Secret } from "jsonwebtoken";
-
-interface IUser {
-  name: string;
-  email: string;
-  password: string;
-  confirm: string;
-  role?: string;
-  avatar?: string;
-  active?: boolean;
-  friends?: Types.ObjectId[];
-}
+import { IUser } from "../../types";
 
 interface IUserMethods {
   createJWT(): string;
@@ -62,6 +52,14 @@ const schema = new Schema<IUser, UserModel, IUserMethods>(
     avatar: {
       type: String,
       default: "default.jpg",
+    },
+    lastname: {
+      type: String,
+      default: "",
+    },
+    bio: {
+      type: String,
+      default: "",
     },
     active: {
       type: Boolean,

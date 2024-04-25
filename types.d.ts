@@ -2,7 +2,8 @@ export interface ServerToClientEvents {
   getOnlineUsers: (data: string[]) => void;
   newServerMessage: () => void;
   displayTyping: (data: string) => void;
-  newUser: (name: string) => void;
+  userConnected: (name: string) => void;
+  notification: (count: number) => void;
 }
 
 export interface ClientToServerEvents {
@@ -39,12 +40,18 @@ export interface AuthState extends IAuthenticated {
 export interface IUser {
   name: string;
   email: string;
+  password: string;
+  confirm: string;
+  role?: string;
+  avatar?: string;
+  lastname: string;
+  bio: string;
+  active?: boolean;
+  friends?: Types.ObjectId[];
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
   _id?: string;
-  avatar?: string;
-  role?: string;
 }
 
 export interface UserResponse {

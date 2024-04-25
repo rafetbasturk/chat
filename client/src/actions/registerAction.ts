@@ -25,7 +25,7 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
     toast.success("Registered successfully. Redirecting!");
     return redirect("/");
   } catch (error) {
-    console.log("REGISTER ACTION", error);
+    // console.log("REGISTER ACTION", error);
     if (error instanceof AxiosError) {
       toast.error(error.response?.data.msg);
       return null;

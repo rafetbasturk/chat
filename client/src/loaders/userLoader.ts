@@ -26,7 +26,7 @@ export const userLoader = async ({ params }: LoaderFunctionArgs) => {
     const user = await getUser(params.id as string);
     return json(user, { status: 200 });
   } catch (error) {
-    console.log("USER LOADER", error);
+    // console.log("USER LOADER", error);
     if (error instanceof AxiosError) {
       throw json(error, {
         status: error.response?.status,

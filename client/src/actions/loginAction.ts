@@ -20,7 +20,7 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
     toast.success("Logged in successfully.");
     return redirect("/");
   } catch (error) {
-    console.log("LOGIN ACTION", error);
+    // console.log("LOGIN ACTION", error);
 
     if (error instanceof AxiosError) {
       toast.error(

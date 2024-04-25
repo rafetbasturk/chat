@@ -1,7 +1,9 @@
 import { Socket, io } from "socket.io-client";
 import { ServerToClientEvents, ClientToServerEvents } from "../../../types";
 
-const url = import.meta.env.DEV ? "http://localhost:5000/" : "https://chat-1ykr.onrender.com/"
+const url = import.meta.env.DEV
+  ? "ws://localhost:5000/"
+  : "https://chat-1ykr.onrender.com/";
 
 export const socketWithQuery = (
   userId: string

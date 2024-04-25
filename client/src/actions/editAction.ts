@@ -4,31 +4,27 @@ import { AxiosError } from "axios";
 import apiFetch from "../configs/axios";
 import { uploadCloudinary } from "../utils/uploadCloudinary";
 
-export const messageAction = async ({
-  request,
-  params,
-}: ActionFunctionArgs) => {
+export const editAction = async ({ request, params }: ActionFunctionArgs) => {
   const formData = await request.formData();
 
-  const { file, content } = Object.fromEntries(formData);
+  const { file, name, lastname, bio } = Object.fromEntries(formData);
 
-  const message = {
-    content: "",
-    receiverId: params.id,
-  };
-
+  let avatar;
   if (file) {
-    message.content = await uploadCloudinary(file as File, "odinchat");
-  } else {
-    message.content = content.toString();
+    avatar = await uploadCloudinary(file as File, "odinchat-avatar");
   }
 
   try {
-    await apiFetch.post(`/messages/send/${params.id}`, message);
-    // return redirect(`/${params.id}`);
+    await apiFetch.patch(`/users/${params.id}/edit`, {
+      name,
+      lastname,
+      bio,
+      avatar,
+    });
+    toast.success("Changes saved.");
     return null;
   } catch (error) {
-    // console.log("MESSAGE ACTION", error);
+    // console.log("EDIT ACTION", error);
 
     if (error instanceof AxiosError) {
       toast.error(
