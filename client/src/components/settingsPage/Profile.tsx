@@ -7,9 +7,9 @@ export default function Profile() {
   const { id } = useParams();
 
   return (
-    <main className="h-dvh flex flex-col relative">
+    <div className="flex flex-col h-full">
       <Heading>Info</Heading>
-      <div className="grow bg-gray-800 p-10 flex flex-col gap-8">
+      <div className="grow bg-gray-800 p-10 flex flex-col gap-8 overflow-y-scroll">
         <div className="bg-gray-700 p-4 rounded-lg flex flex-col gap-4 items-center">
           <div className="w-28 h-28 bg-gray-400 overflow-hidden rounded-full flex items-center justify-center">
             {user.avatar === "default.jpg" ? (
@@ -37,6 +37,6 @@ export default function Profile() {
       >
         Edit
       </Link>
-    </main>
+    </div>
   );
 }

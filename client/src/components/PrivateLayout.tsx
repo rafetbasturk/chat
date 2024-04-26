@@ -7,7 +7,7 @@ const PrivateLayout = () => {
   ) as IAuthenticated;
 
   return isAuthenticated ? (
-    <div className="flex h-dvh">
+    <div className="flex h-dvh overflow-hidden">
       <Outlet context={currentUser} />
     </div>
   ) : (

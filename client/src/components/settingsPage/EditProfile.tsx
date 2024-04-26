@@ -45,80 +45,81 @@ export default function EditProfile() {
   }, [file]);
 
   return (
-    <Form
-      className="h-dvh flex flex-col relative"
-      method="post"
-      replace
-      onSubmit={handleSubmit}
-      autoComplete="off"
-    >
+    <div className="flex flex-col h-full">
       <Heading isDisabled={isDisabled}>Edit Profile</Heading>
-
-      <div className="grow bg-gray-800 p-10 flex flex-col gap-6 text-sm">
-        <div className="flex flex-col gap-1">
-          <div className="bg-gray-700 p-4 rounded-lg flex gap-4">
-            <div
-              className="w-20 h-20 overflow-hidden bg-gray-400 rounded-full text-3xl flex items-center justify-center cursor-pointer"
-              onClick={open}
-            >
-              {preview ? (
-                <img
-                  src={preview as string}
-                  alt="selected image"
-                  className="w-full h-full object-cover "
+      <Form
+        className="bg-gray-800 flex flex-col h-full overflow-y-scroll"
+        method="post"
+        replace
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
+        <div className="p-10 flex flex-col gap-6 text-sm">
+          <div className="flex flex-col gap-1">
+            <div className="bg-gray-700 p-4 rounded-lg flex gap-4">
+              <div
+                className="w-20 h-20 overflow-hidden bg-gray-400 rounded-full text-3xl flex items-center justify-center cursor-pointer"
+                onClick={open}
+              >
+                {preview ? (
+                  <img
+                    src={preview as string}
+                    alt="selected image"
+                    className="w-full h-full object-cover "
+                  />
+                ) : (
+                  <BsCamera />
+                )}
+              </div>
+              <div className="grow flex flex-col self-center">
+                <input
+                  type="text"
+                  name="name"
+                  className="bg-transparent outline-none leading-loose"
+                  placeholder="Name"
+                  defaultValue={user.name}
+                  onChange={handleChange}
+                  autoComplete="given-name"
                 />
-              ) : (
-                <BsCamera />
-              )}
+                <input
+                  type="text"
+                  name="lastname"
+                  className="bg-transparent outline-none leading-loose border-t border-t-gray-500"
+                  placeholder="Last Name"
+                  defaultValue={user.lastname}
+                  onChange={handleChange}
+                  autoComplete="family-name"
+                />
+              </div>
             </div>
-            <div className="grow flex flex-col self-center">
-              <input
-                type="text"
-                name="name"
-                className="bg-transparent outline-none leading-loose"
-                placeholder="Name"
-                defaultValue={user.name}
+            <span className="text-xs pl-4 text-gray-400">
+              Update your name and lastname and upload an avatar.
+            </span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <h4 className="pl-4 text-gray-400 font-semibold">BIO</h4>
+            <div className="bg-gray-700 p-4 rounded-lg flex gap-4">
+              <textarea
+                name="bio"
+                className="bg-transparent outline-none resize-none w-full"
+                placeholder="A few words about you"
+                defaultValue={user.bio}
                 onChange={handleChange}
-                autoComplete="given-name"
-              />
-              <input
-                type="text"
-                name="lastname"
-                className="bg-transparent outline-none leading-loose border-t border-t-gray-500"
-                placeholder="Last Name"
-                defaultValue={user.lastname}
-                onChange={handleChange}
-                autoComplete="family-name"
               />
             </div>
+            <span className="text-xs pl-4 text-gray-400">
+              Details about yourself.
+            </span>
           </div>
-          <span className="text-xs pl-4 text-gray-400">
-            Update your name and lastname and upload an avatar.
-          </span>
         </div>
-        <div className="flex flex-col gap-1">
-          <h4 className="pl-4 text-gray-400 font-semibold">BIO</h4>
-          <div className="bg-gray-700 p-4 rounded-lg flex gap-4">
-            <textarea
-              name="bio"
-              className="bg-transparent outline-none resize-none w-full"
-              placeholder="A few words about you"
-              defaultValue={user.bio}
-              onChange={handleChange}
-            />
-          </div>
-          <span className="text-xs pl-4 text-gray-400">
-            Details about yourself.
-          </span>
-        </div>
-      </div>
-      {isModalOpen && (
-        <Modal onClose={close}>
-          <Modal.Title>Upload Image</Modal.Title>
-          <Modal.Warning>File should be jpeg, jpg or png.</Modal.Warning>
-          <DropZone />
-        </Modal>
-      )}
-    </Form>
+        {isModalOpen && (
+          <Modal onClose={close}>
+            <Modal.Title>Upload Image</Modal.Title>
+            <Modal.Warning>File should be jpeg, jpg or png.</Modal.Warning>
+            <DropZone />
+          </Modal>
+        )}
+      </Form>
+    </div>
   );
 }
